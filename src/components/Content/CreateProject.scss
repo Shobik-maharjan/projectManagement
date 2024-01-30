@@ -1,0 +1,28 @@
+#openForm {
+  display: none;
+  border-radius: 10px;
+
+  &.openForm {
+    width: 50vw;
+    position: absolute;
+    top: 25%;
+    display: block;
+    right: 25%;
+    padding: 10px;
+    background-color: hsla(239, 100%, 61%);
+    box-shadow: 0px 0px 20px 4px;
+  }
+}
+
+.input-control {
+  margin: 10px;
+
+  .input {
+    width: 100%;
+    padding: 10px;
+  }
+  .textarea {
+    width: 100%;
+    padding: 10px;
+  }
+}

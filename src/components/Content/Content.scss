@@ -1,0 +1,36 @@
+.main {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  .main-todo {
+    width: 32vw;
+    background-color: hsla(0, 0%, 93%, 0.911);
+
+    .todo-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px;
+      .three-dot {
+        color: hsl(239, 100%, 61%);
+      }
+    }
+
+    .card {
+      background-color: white;
+      margin: 6px;
+      padding: 10px;
+    }
+  }
+
+  .main-in-progress {
+    width: 32vw;
+    background-color: hsla(0, 0%, 93%, 0.911);
+  }
+
+  .main-done {
+    width: 32vw;
+    background-color: hsla(0, 0%, 93%, 0.911);
+  }
+}
