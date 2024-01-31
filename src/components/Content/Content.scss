@@ -21,6 +21,14 @@
       background-color: white;
       margin: 6px;
       padding: 10px;
+      overflow-wrap: break-word;
+
+      .card-date {
+        margin-bottom: 10px;
+      }
+      .card-message {
+        margin-bottom: 10px;
+      }
     }
   }
 

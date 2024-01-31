@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Content />
     </>
   );
 };

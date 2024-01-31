@@ -2,6 +2,16 @@
   display: none;
   border-radius: 10px;
 
+  .head {
+    display: flex;
+    justify-content: space-between;
+
+    .closeForm {
+      background-color: transparent;
+      border: none;
+    }
+  }
+
   &.openForm {
     width: 50vw;
     position: absolute;
