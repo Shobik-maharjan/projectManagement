@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./createProject.scss";
 import Content from "./Content";
 import { RxCross2 } from "react-icons/rx";
-import { ref, set, onValue } from "firebase/database";
+import { ref, push, set, onValue } from "firebase/database";
 import { database, db } from "../config/FirebaseDatabase";
 import { collection, addDoc } from "firebase/firestore";
 
@@ -12,9 +12,8 @@ const CreateProject = (props) => {
     message: "",
   });
   const [selectedHeading, setSelectedHeading] = useState("Todo");
-  // const heading = ["Todo", "In Progresss", "Done"];
+  const heading = ["Todo", "In Progress", "Done"];
   const { open } = props;
-  // console.log(heading);
   const [closeForms, setCloseForms] = useState("");
   const close = () => {
     setCloseForms("openForm");
@@ -30,69 +29,53 @@ const CreateProject = (props) => {
     });
   };
 
-  // const handleHeadingChange = (e) => {
-  //   const selectedHeading = e.target.value;
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     heading: selectedHeading,
-  //   }));
-  // };
-
-  const { date, message } = formData;
-
-  const submitData = async (e) => {
-    e.preventDefault();
-    console.log("submit clicked");
-    const res = await fetch(
-      "https://kanbanui-default-rtdb.firebaseio.com/kanbanUI.json",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          date,
-          message,
-        }),
-      }
-    );
-    if (res) {
-      setFormData({
-        date: "",
-        message: "",
-      });
-      alert("Data Stored Successfully");
-    }
-  };
-  // const db = database.app.options.databaseURL;
-  console.log(database);
-
-  // const submitData = async () => {
-  //   const { date, message } = formData;
-  //   const res = await set(ref(database, "/kanbanUI"), {
-  //     date,
-  //     message,
-  //   });
+  // const { date, message } = formData;
+  // const submitData = async (e) => {
+  //   e.preventDefault();
+  //   console.log("submit clicked");
+  //   const res = await fetch(
+  //     "https://kanbanui-default-rtdb.firebaseio.com/kanbanUI.json",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify([
+  //         {
+  //           date,
+  //           message,
+  //           heading: selectedHeading,
+  //         },
+  //       ]),
+  //     }
+  //   );
   //   if (res) {
   //     setFormData({
   //       date: "",
   //       message: "",
   //     });
   //     alert("Data Stored Successfully");
+  //     window.location.reload();
   //   }
   // };
-  // try {
-  //   const { date, message } = formData;
-  //   console.log(date);
-  //   console.log(message);
-  //   const docRef = await addDoc(collection(db, "users"), {
-  //     date,
-  //     message,
-  //   });
-  //   console.log("Document written with ID: ", docRef.id);
-  // } catch (e) {
-  //   console.error("Error adding document: ", e);
-  // }
+
+  const submitData = async () => {
+    const { date, message } = formData;
+    const res = await push(ref(database, "/kanbanUI"), {
+      date,
+      message,
+      heading: selectedHeading,
+    });
+
+    if (res) {
+      setFormData({
+        date: "",
+        message: "",
+      });
+      alert("Data Stored Successfully");
+      window.location.reload();
+    }
+  };
 
   return (
     <>
@@ -104,7 +87,7 @@ const CreateProject = (props) => {
               <RxCross2 />
             </button>
           </div>
-          {/* <div className="input-control">
+          <div className="input-control">
             <select
               name="heading"
               id="heading"
@@ -119,7 +102,7 @@ const CreateProject = (props) => {
                 </option>
               ))}
             </select>
-          </div> */}
+          </div>
           <div className="input-control">
             <label htmlFor="date">Date: </label>
             <input
