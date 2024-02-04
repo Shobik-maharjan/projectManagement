@@ -61,19 +61,23 @@ const CreateProject = (props) => {
 
   const submitData = async () => {
     const { date, message } = formData;
-    const res = await push(ref(database, "/kanbanUI"), {
-      date,
-      message,
-      heading: selectedHeading,
-    });
-
-    if (res) {
-      setFormData({
-        date: "",
-        message: "",
+    if (date !== "" && message !== "" && date !== null && message !== null) {
+      const res = await push(ref(database, "/kanbanUI"), {
+        date,
+        message,
+        heading: selectedHeading,
       });
-      alert("Data Stored Successfully");
-      window.location.reload();
+
+      if (res) {
+        setFormData({
+          date: "",
+          message: "",
+        });
+        alert("Data Stored Successfully");
+        window.location.reload();
+      }
+    } else {
+      alert("Please provide valid date and message before submitting.");
     }
   };
 
