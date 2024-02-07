@@ -23,22 +23,22 @@ const Content = () => {
     // };
   }, []);
 
-  async function fetchData() {
-    await fetch("https://kanbanui-default-rtdb.firebaseio.com/kanbanUI.json")
-      .then((res) => res.json())
-      .then((data) => {
-        data ? setDataa(data) : [];
-        //   if (data) {
-        //   setDataa(data);
-        // } else {
-        //     setDataa([]); // Set to empty array if not an array
-        //   }
-      });
-  }
+  // async function fetchData() {
+  //   await fetch("https://kanbanui-default-rtdb.firebaseio.com/kanbanUI.json")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       data ? setDataa(data) : [];
+  //       //   if (data) {
+  //       //   setDataa(data);
+  //       // } else {
+  //       //     setDataa([]); // Set to empty array if not an array
+  //       //   }
+  //     });
+  // }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <>
